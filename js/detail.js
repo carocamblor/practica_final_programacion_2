@@ -122,8 +122,7 @@ window.onload = function () {
     } else{
         notFav.style.display = 'none';
         fav.style.display = 'block';
-
-        }
+    }
 
     fav.addEventListener('click',function(){
         fav.style.display = 'none'
@@ -136,7 +135,6 @@ window.onload = function () {
         }
 
         predilectos.push({type: type, id: id})
-        console.log(predilectos)
         localStorage.setItem('favoritos', JSON.stringify(predilectos))
     })
 
