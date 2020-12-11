@@ -141,11 +141,21 @@ window.onload = function () {
         localStorage.setItem('favoritos', JSON.stringify(predilectos))
     })
 
+    
+
     notFav.addEventListener('click',function(){
         fav.style.display = 'block'
         notFav.style.display = 'none'
         predilectos = JSON.parse(localStorage.getItem('favoritos'))
-        localStorage.setItem('favoritos', JSON.stringify(predilectos.filter(gusta => (gusta.id!=id)&&(gusta.type!=type))))
+        console.log(predilectos)
+        console.log(predilectos.filter(function(gusta) {
+            return (gusta.id == id) && (gusta.type == type)
+        }))
+        localStorage.setItem('favoritos', JSON.stringify(predilectos.filter(
+            function(gusta) {
+                return gusta.id != id && gusta.type != type
+            }
+        )))
     })    
 
 }
