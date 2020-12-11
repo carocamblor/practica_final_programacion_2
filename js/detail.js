@@ -116,11 +116,10 @@ window.onload = function () {
     if (favs == null) {
         notFav.style.display = 'none';
         fav.style.display = 'block'; 
-    }
-    else if (favs.some(FAV => (FAV.type==type)&&(FAV.id==id))) {
+    }else if (favs.some(FAV => (FAV.type==type)&&(FAV.id==id))) {
         notFav.style.display = 'block';
         fav.style.display = 'none';
-        } else{
+    } else{
         notFav.style.display = 'none';
         fav.style.display = 'block';
 
@@ -141,22 +140,18 @@ window.onload = function () {
         localStorage.setItem('favoritos', JSON.stringify(predilectos))
     })
 
-    
-
     notFav.addEventListener('click',function(){
         fav.style.display = 'block'
         notFav.style.display = 'none'
         predilectos = JSON.parse(localStorage.getItem('favoritos'))
-        console.log(predilectos)
-        console.log(predilectos.filter(function(gusta) {
-            return (gusta.id == id) && (gusta.type == type)
-        }))
-        localStorage.setItem('favoritos', JSON.stringify(predilectos.filter(
-            function(gusta) {
-                return gusta.id != id && gusta.type != type
+        for (let i = predilectos.length - 1; i >= 0; i--) {
+            const element = predilectos[i];
+            if (element.id == id && element.type == type){
+                favs.splice(i,1);
+                localStorage.setItem("favoritos", JSON.stringify(favs))
             }
-        )))
-    })    
-
+        
+        }
+    })
 }
 
